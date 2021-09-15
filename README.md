@@ -6,26 +6,26 @@ Tested with Home Assistant 2021.8.8.
 
 ## Example usage
 
-```
+```yaml
 sensor:
   - platform: prometheus
     url: http://localhost:9090
     queries:
       - name: Energy usage
-	expr: energy_usage_wh / 1000
+        expr: energy_usage_wh / 1000
         unit_of_measurement: kWh
-	device_class: energy
-	state_class: measurement
+        device_class: energy
+        state_class: measurement
       - name: Energy solar production
-	expr: energy_solar_wh / 1000
+        expr: energy_solar_wh / 1000
         unit_of_measurement: kWh
-	device_class: energy
-	state_class: measurement
+        device_class: energy
+        state_class: measurement
       - name: Energy grid consumption
         unit_of_measurement: kWh
-	expr: energy_grid_wh / 1000
-	device_class: energy
-	state_class: measurement
+        expr: energy_grid_wh / 1000
+        device_class: energy
+        state_class: measurement
 ```
 
 
