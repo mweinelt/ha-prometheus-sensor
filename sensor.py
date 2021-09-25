@@ -117,11 +117,11 @@ class PrometheusSensor(SensorEntity):
         self._prometheus: Prometheus = prometheus
 
         self._attr_name = query.get(CONF_NAME)
-        self._attr_unit_of_measurement = query.get(CONF_UNIT_OF_MEASUREMENT)
+        self._attr_native_unit_of_measurement = query.get(CONF_UNIT_OF_MEASUREMENT)
         self._attr_state_class = query.get(CONF_STATE_CLASS)
         self._attr_device_class = query.get(CONF_DEVICE_CLASS)
 
     @Throttle(MIN_TIME_BETWEEN_UPDATES)
     async def async_update(self) -> None:
         """Update state by executing query."""
-        self._attr_state = await self._prometheus.query(self._expr)
+        self._attr_native_value = await self._prometheus.query(self._expr)
