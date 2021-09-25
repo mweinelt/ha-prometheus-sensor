@@ -24,6 +24,8 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession
 import homeassistant.helpers.config_validation as cv
 from homeassistant.util import Throttle
 
+_LOGGER = logging.getLogger(__name__)
+
 DEFAULT_URL = "http://localhost:9090"
 CONF_QUERIES = "queries"
 CONF_EXPR = "expr"
@@ -62,6 +64,8 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
     for query in config.get("queries", {}):
         sensors.append(PrometheusSensor(prometheus, query))
 
+    _LOGGER.debug("Setting up %d prometheus sensors", len(sensors))
+
     async_add_entities(sensors, update_before_add=True)
 
 
@@ -97,7 +101,11 @@ class Prometheus:
             _LOGGER.error("Expression '%s' yielded multiple metrics", expr)
             return STATE_PROBLEM
 
-        return result[0]["value"][1]
+        value = float(result[0]["value"][1])
+
+        _LOGGER.debug("Expression '%s' yields result %f", expr, value)
+
+        return value
 
 
 class PrometheusSensor(SensorEntity):
