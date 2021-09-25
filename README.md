@@ -2,7 +2,15 @@
 
 Query latest values from prometheus metrics and import them as as sensors into home assistant.
 
+Contributions welcome!
+
+## Compatibility
+
 Tested with Home Assistant 2021.9.6.
+
+## Todos
+
+- Migrate to `DataUpdateCoordinator` (https://developers.home-assistant.io/docs/integration_fetching_data/)
 
 ## Example usage
 
