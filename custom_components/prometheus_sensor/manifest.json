@@ -1,0 +1,9 @@
+{
+  "domain": "prometheus_sensor",
+  "name": "Prometheus Query Sensor",
+  "version": "1.0.0",
+  "documentation": "https://github.com/mweinelt/ha-prometheus-sensor",
+  "issue_tracker": "https://github.com/mweinelt/ha-prometheus-sensor/issues",
+  "iot_class": "local_polling",
+  "codeowners": ["@mweinelt"]
+}
