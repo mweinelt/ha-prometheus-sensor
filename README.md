@@ -6,7 +6,7 @@ Contributions welcome!
 
 ## Compatibility
 
-Tested with Home Assistant 2021.9.6.
+Tested with Home Assistant 2021.12.10.
 
 ## Todos
 
@@ -16,7 +16,7 @@ Tested with Home Assistant 2021.9.6.
 
 ```yaml
 sensor:
-  - platform: prometheus
+  - platform: prometheus_query
     url: http://localhost:9090
     queries:
       - name: Energy usage
