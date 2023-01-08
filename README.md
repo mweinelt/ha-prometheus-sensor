@@ -16,7 +16,7 @@ Tested with Home Assistant 2021.12.10.
 
 ```yaml
 sensor:
-  - platform: prometheus_query
+  - platform: prometheus_sensor
     url: http://localhost:9090
     queries:
       - name: Energy usage
