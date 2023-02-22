@@ -62,7 +62,7 @@ async def async_setup_platform(
     hass: HomeAssistant,
     config: ConfigType,
     async_add_entities: AddEntitiesCallback,
-    discovery_info: DiscoveryInfoType | None = None
+    discovery_info: DiscoveryInfoType | None = None,
 ):
     """Set up the sensor platform."""
     session = async_get_clientsession(hass)
@@ -72,7 +72,7 @@ async def async_setup_platform(
     queries = config[CONF_QUERIES]
     async_add_entities(
         [PrometheusSensor(prometheus, query) for query in queries],
-        update_before_add=True
+        update_before_add=True,
     )
 
 
