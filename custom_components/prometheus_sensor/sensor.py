@@ -17,6 +17,7 @@ from homeassistant.const import (
     CONF_NAME,
     CONF_UNIT_OF_MEASUREMENT,
     CONF_URL,
+    CONF_UNIQUE_ID,
     STATE_PROBLEM,
     STATE_UNKNOWN,
 )
@@ -30,7 +31,6 @@ DEFAULT_URL = "http://localhost:9090"
 CONF_QUERIES = "queries"
 CONF_EXPR = "expr"
 CONF_STATE_CLASS = "state_class"
-CONF_UNIQUE_ID = "unique_id"
 CONF_NATIVE_VALUE = "native_value"
 MIN_TIME_BETWEEN_UPDATES = timedelta(seconds=60)
 
