@@ -31,7 +31,6 @@ DEFAULT_URL = "http://localhost:9090"
 CONF_QUERIES = "queries"
 CONF_EXPR = "expr"
 CONF_STATE_CLASS = "state_class"
-CONF_NATIVE_VALUE = "native_value"
 MIN_TIME_BETWEEN_UPDATES = timedelta(seconds=60)
 
 _LOGGER = logging.getLogger(__name__)
@@ -40,7 +39,6 @@ _QUERY_SCHEMA = vol.Schema(
     {
         vol.Required(CONF_NAME): cv.string,
         vol.Optional(CONF_UNIQUE_ID): cv.string,
-        vol.Optional(CONF_NATIVE_VALUE): cv.string,
         vol.Optional(CONF_UNIT_OF_MEASUREMENT): cv.string,
         vol.Required(CONF_EXPR): cv.string,
         vol.Optional(CONF_DEVICE_CLASS): DEVICE_CLASSES_SCHEMA,
@@ -120,7 +118,6 @@ class PrometheusSensor(SensorEntity):
 
         self._attr_name = query.get(CONF_NAME)
         self._attr_unique_id = query.get(CONF_UNIQUE_ID)
-        self._attr_native_value = query.get(CONF_NATIVE_VALUE)
         self._attr_native_unit_of_measurement = query.get(CONF_UNIT_OF_MEASUREMENT)
         self._attr_state_class = query.get(CONF_STATE_CLASS)
         self._attr_device_class = query.get(CONF_DEVICE_CLASS)
