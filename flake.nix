@@ -6,7 +6,7 @@
   inputs.flake-utils.url = "github:numtide/flake-utils";
 
   outputs = { self, nixpkgs, pre-commit-hooks, flake-utils }:
-    flake-utils.lib.eachDefaultSystem (system:
+    flake-utils.lib.eachSystem [ "aarch64-linux" "x86_64-linux" ] (system:
       {
         checks = {
           pre-commit-check = pre-commit-hooks.lib.${system}.run {
