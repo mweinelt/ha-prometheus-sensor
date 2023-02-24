@@ -1,6 +1,7 @@
 {
   description = "ha-prometheus-sensor";
 
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs";
   inputs.pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
   inputs.flake-utils.url = "github:numtide/flake-utils";
 
@@ -28,6 +29,8 @@
           ] ++ (with python3.pkgs; [
             # typing stubs
             aiohttp
+            homeassistant-stubs
+            voluptuous-stubs
           ]);
         };
       }
