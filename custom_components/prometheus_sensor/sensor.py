@@ -28,7 +28,7 @@ from homeassistant.core import HomeAssistant
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 import homeassistant.helpers.config_validation as cv
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
-from homeassistant.helpers.typing import ConfigType, DiscoveryInfoType
+from homeassistant.helpers.typing import ConfigType, DiscoveryInfoType, StateType
 from homeassistant.util import Throttle
 
 _LOGGER: Final = logging.getLogger(__name__)
@@ -84,7 +84,7 @@ class Prometheus:
         self._session = session
         self._url = urljoin(f"{url}/", "api/v1/query")
 
-    async def query(self, expr: str) -> str | float:
+    async def query(self, expr: str) -> float | StateType:
         """Query expression response."""
         response = await self._session.get(self._url, params={"query": expr})
         if response.status != 200:
