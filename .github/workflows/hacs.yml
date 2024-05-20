@@ -1,0 +1,17 @@
+name: Validate for HACS
+
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  hacs:
+    name: 
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: "hacs/action@main"
+        with:
+          category: "integration"
+          ignore: "brands"
