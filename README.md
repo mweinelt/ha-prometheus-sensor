@@ -6,7 +6,7 @@ Contributions welcome!
 
 ## Compatibility
 
-Tested with Home Assistant 2021.12.10.
+Tested against Home Asisstant 2024.4.3.
 
 ## Todos
 
