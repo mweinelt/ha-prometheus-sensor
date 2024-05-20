@@ -72,7 +72,7 @@ async def async_setup_platform(
             PrometheusSensor(
                 prometheus,
                 query[CONF_EXPR],
-                query[CONF_UNIQUE_ID],
+                query.get(CONF_UNIQUE_ID),
                 query[CONF_NAME],
                 query.get(CONF_DEVICE_CLASS),
                 query.get(CONF_STATE_CLASS),
@@ -130,7 +130,7 @@ class PrometheusSensor(SensorEntity):
         self,
         prometheus: Prometheus,
         expression: str,
-        unique_id: str,
+        unique_id: str | None,
         device_name: str,
         device_class: SensorDeviceClass | None,
         state_class: SensorStateClass | None,
