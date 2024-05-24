@@ -44,11 +44,11 @@
         "nixpkgs-stable": "nixpkgs-stable"
       },
       "locked": {
-        "lastModified": 1715870890,
-        "narHash": "sha256-nacSOeXtUEM77Gn0G4bTdEOeFIrkCBXiyyFZtdGwuH0=",
+        "lastModified": 1716213921,
+        "narHash": "sha256-xrsYFST8ij4QWaV6HEokCUNIZLjjLP1bYC60K8XiBVA=",
         "owner": "cachix",
         "repo": "git-hooks.nix",
-        "rev": "fa606cccd7b0ccebe2880051208e4a0f61bfc8c1",
+        "rev": "0e8fcc54b842ad8428c9e705cb5994eaf05c26a0",
         "type": "github"
       },
       "original": {
@@ -80,11 +80,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1716200252,
-        "narHash": "sha256-/h22mCdX1Od0Ej2yKEznRrk9+c4RzWOG9kLO91oCrl8=",
+        "lastModified": 1716569108,
+        "narHash": "sha256-6G31f39Srfy/DCSYvqMoGQzI4bpvZ6SYvLcPChYjJYc=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "d3472a8728c882f4804ec751bfa960991d39c23b",
+        "rev": "dedcf4901b40a953b1088036e379c8c2d7c9e047",
         "type": "github"
       },
       "original": {
