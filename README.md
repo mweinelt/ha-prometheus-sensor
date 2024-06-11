@@ -6,7 +6,7 @@ Contributions welcome!
 
 ## Compatibility
 
-Tested against Home Asisstant 2024.4.3.
+Tested against Home Asisstant 2024.5.5.
 
 ## Todos
 
