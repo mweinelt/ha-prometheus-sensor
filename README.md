@@ -8,10 +8,6 @@ Contributions welcome!
 
 Tested against Home Asisstant 2024.5.5.
 
-## Todos
-
-- Migrate to `DataUpdateCoordinator` (https://developers.home-assistant.io/docs/integration_fetching_data/)
-
 ## Example usage
 
 ```yaml
