@@ -1,6 +1,6 @@
 # Prometheus sensor for Home Assistant
 
-Query latest values from prometheus metrics and import them as as sensors into home assistant.
+Use [PromQL expressions](https://prometheus.io/docs/prometheus/latest/querying/basics/) to query [Prometheus](https://prometheus.io/)-compatible APIs and expose the results as sensor values in [Home Assistant](https://www.home-assistant.io/).
 
 Contributions welcome!
 
