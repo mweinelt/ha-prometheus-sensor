@@ -92,7 +92,7 @@ class Prometheus:
         self._session = session
         self._url = urljoin(f"{url}/", "api/v1/query")
 
-    async def query(self, expr: str) -> float | StateType:
+    async def query(self, expr: str) -> [StateType | None, float | None]:
         """Query expression response."""
         response = await self._session.get(self._url, params={"query": expr})
         if response.status != 200:
@@ -101,26 +101,26 @@ class Prometheus:
                 response.status,
                 expr,
             )
-            return STATE_UNKNOWN
+            return STATE_UNKNOWN, None
 
         try:
             result = (await response.json())["data"]["result"]
         except (ValueError, KeyError) as error:
             _LOGGER.error("Invalid query response: %s", error)
-            return STATE_UNKNOWN
+            return STATE_UNKNOWN, None
 
         if not result:
             _LOGGER.error("Expression '%s' yielded no result", expr)
-            return STATE_PROBLEM
+            return STATE_PROBLEM, None
         elif len(result) > 1:
             _LOGGER.error("Expression '%s' yielded multiple metrics", expr)
-            return STATE_PROBLEM
+            return STATE_PROBLEM, None
 
         value = float(result[0]["value"][1])
 
         _LOGGER.debug("Expression '%s' yields result %f", expr, value)
 
-        return value
+        return None, value
 
 
 class PrometheusSensor(SensorEntity):
@@ -149,4 +149,6 @@ class PrometheusSensor(SensorEntity):
     @Throttle(MIN_TIME_BETWEEN_UPDATES)
     async def async_update(self) -> None:
         """Update state by executing query."""
-        self._attr_native_value = await self._prometheus.query(self._expression)
+        error, value = await self._prometheus.query(self._expression)
+        self._attr_available = error is None
+        self._attr_native_value = value
