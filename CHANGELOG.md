@@ -1,3 +1,15 @@
+## 1.1.2
+
+- Fix error state propagation into Home Assistant
+
+Tested compatibility with 2024.5.5
+
+## 1.1.1
+
+- Enable brands test in HACS check for the upcoming inclusion
+
+Tested compatiblity with 2024.4.3
+
 ## 1.0.0
 
 Tested compatibility with 2021.12.10
