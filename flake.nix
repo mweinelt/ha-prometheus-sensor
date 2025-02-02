@@ -33,11 +33,9 @@
             pre-commit = git-hooks.lib.${system}.run {
               src = ./.;
               hooks = {
-                isort.enable = true;
                 ruff.enable = true;
                 ruff-format = {
                   enable = true;
-                  entry = "${pkgs.ruff}/bin/ruff format";
                   pass_filenames = false;
                 };
               };
