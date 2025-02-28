@@ -28,6 +28,14 @@
         let
           pkgs = nixpkgs.legacyPackages.${system};
           lib = pkgs.lib;
+
+          pythonEnv = pkgs.home-assistant.python.withPackages (
+            ps: with ps; [
+              aiohttp
+              (toPythonModule pkgs.home-assistant)
+              voluptuous
+            ]
+          );
         in
         {
           checks = {
@@ -40,6 +48,10 @@
                   entry = "${lib.getExe pkgs.ruff} format --select I --fix";
                   pass_filenames = false;
                 };
+                pyright = {
+                  enable = true;
+                  entry = "${lib.getExe pkgs.pyright} --pythonpath ${pythonEnv.interpreter}";
+                };
               };
             };
           };
@@ -48,16 +60,7 @@
             mkShell {
               inherit (self.checks.${system}.pre-commit) shellHook;
 
-              buildInputs =
-                [
-                  pyright
-                  ruff
-                ]
-                ++ (with python312.pkgs; [
-                  aiohttp
-                  (toPythonModule pkgs.home-assistant)
-                  voluptuous
-                ]);
+              buildInputs = [ pythonEnv ] ++ self.checks.${system}.pre-commit.enabledPackages;
             };
 
           formatter = pkgs.nixfmt-rfc-style;
