@@ -43,11 +43,7 @@
               src = ./.;
               hooks = {
                 ruff.enable = true;
-                ruff-format = {
-                  enable = true;
-                  entry = "${lib.getExe pkgs.ruff} format --select I --fix";
-                  pass_filenames = false;
-                };
+                ruff-format.enable = true;
                 pyright = {
                   enable = true;
                   entry = "${lib.getExe pkgs.pyright} --pythonpath ${pythonEnv.interpreter}";
