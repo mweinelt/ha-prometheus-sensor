@@ -27,6 +27,7 @@
         system:
         let
           pkgs = nixpkgs.legacyPackages.${system};
+          lib = pkgs.lib;
         in
         {
           checks = {
@@ -36,6 +37,7 @@
                 ruff.enable = true;
                 ruff-format = {
                   enable = true;
+                  entry = "${lib.getExe pkgs.ruff} format --select I --fix";
                   pass_filenames = false;
                 };
               };
@@ -48,7 +50,6 @@
 
               buildInputs =
                 [
-                  isort
                   pyright
                   ruff
                 ]
