@@ -4,11 +4,15 @@ on:
   push:
   pull_request:
 
+permissions: {}
+
 jobs:
   checks:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
+      with:
+        persist-credentials: false
     - uses: DeterminateSystems/nix-installer-action@main
     - uses: nix-community/cache-nix-action@v6
       with:
