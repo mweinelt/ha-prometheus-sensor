@@ -4,12 +4,16 @@ on:
   schedule:
     - cron: '0 17 1 * *' # First day of the month at 17:00
 
+permissions: {}
+
 jobs:
   lockfile:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false
       - name: Install Nix
         uses: DeterminateSystems/nix-installer-action@main
       - name: Update flake.lock
