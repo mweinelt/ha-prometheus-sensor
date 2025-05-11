@@ -10,11 +10,11 @@ jobs:
   checks:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
       with:
         persist-credentials: false
     - uses: DeterminateSystems/nix-installer-action@main
-    - uses: nix-community/cache-nix-action@v6
+    - uses: nix-community/cache-nix-action@135667ec418502fa5a3598af6fb9eb733888ce6a # v6
       with:
         primary-key: nix-${{ runner.os }}-${{ hashFiles('**/*.nix', '**/flake.lock') }}
     - uses: DeterminateSystems/flake-checker-action@main
