@@ -1,3 +1,9 @@
+## 1.1.3
+
+- Migrate from Throttle decorator to SCAN_INTERVAL
+
+Tested compatilibity with 2025.8.3
+
 ## 1.1.2
 
 - Fix error state propagation into Home Assistant

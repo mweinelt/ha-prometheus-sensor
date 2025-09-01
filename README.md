@@ -6,7 +6,7 @@ Contributions welcome!
 
 ## Compatibility
 
-Tested against Home Asisstant 2024.5.5.
+Tested against Home Asisstant 2025.8.3.
 
 ## Example usage
 
