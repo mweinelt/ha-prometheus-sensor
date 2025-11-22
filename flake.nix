@@ -42,6 +42,13 @@
             pre-commit = git-hooks.lib.${system}.run {
               src = ./.;
               hooks = {
+                markdownlint = {
+                  enable = true;
+                  settings.configuration = {
+                    # Don't enforce a max line length
+                    MD013 = false;
+                  };
+                };
                 ruff.enable = true;
                 ruff-format.enable = true;
                 pyright = {

@@ -8,6 +8,17 @@ Contributions welcome!
 
 Tested against Home Asisstant 2025.8.3.
 
+## Options
+
+| Name                | Type   | Default | Description |
+|---------------------|--------|----------|-------------|
+| name                | string | required | Friendly name |
+| expr                | string | required | [PromQL](https://prometheus.io/docs/prometheus/latest/querying/basics/) expression |
+| unique_id           | string | optional | [Unique ID](https://www.home-assistant.io/faq/unique_id/) |
+| unit_of_measurement | string | optional | Unit of the measurement |
+| device_class        | string | optional | [Device class](https://www.home-assistant.io/integrations/sensor/#device-class) |
+| state_class         | string | optional | [State class](https://developers.home-assistant.io/docs/core/entity/sensor/#available-state-classes) |
+
 ## Example usage
 
 ```yaml
@@ -36,7 +47,7 @@ sensor:
 
 I tried to get this component merged into home-assistant in 2020/12.
 
-https://github.com/home-assistant/core/pull/44508
+<https://github.com/home-assistant/core/pull/44508>
 
 That effort failed when the requirement to create a third party
 library to handle the interaction with the Prometheus API came up.

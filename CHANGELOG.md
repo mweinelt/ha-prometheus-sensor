@@ -1,3 +1,5 @@
+# Changelog
+
 ## 1.1.3
 
 - Migrate from Throttle decorator to SCAN_INTERVAL
