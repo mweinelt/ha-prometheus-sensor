@@ -47,7 +47,7 @@ sensor:
 
 I tried to get this component merged into home-assistant in 2020/12.
 
-https://github.com/home-assistant/core/pull/44508
+<https://github.com/home-assistant/core/pull/44508>
 
 That effort failed when the requirement to create a third party
 library to handle the interaction with the Prometheus API came up.
