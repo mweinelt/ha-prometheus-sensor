@@ -10,14 +10,19 @@ Tested against Home Asisstant 2025.8.3.
 
 ## Options
 
-| Name                | Type   | Default | Description |
-|---------------------|--------|----------|-------------|
-| name                | string | required | Friendly name |
-| expr                | string | required | [PromQL](https://prometheus.io/docs/prometheus/latest/querying/basics/) expression |
-| unique_id           | string | optional | [Unique ID](https://www.home-assistant.io/faq/unique_id/) |
+| Name                | Type   | Default  | Description             |
+|---------------------|--------|----------|-------------------------|
+| name                | string | required | Friendly name           |
+| expr                | string | required | [PromQL] expression     |
+| unique_id           | string | optional | [Unique ID]             |
 | unit_of_measurement | string | optional | Unit of the measurement |
-| device_class        | string | optional | [Device class](https://www.home-assistant.io/integrations/sensor/#device-class) |
-| state_class         | string | optional | [State class](https://developers.home-assistant.io/docs/core/entity/sensor/#available-state-classes) |
+| device_class        | string | optional | [Device class]          |
+| state_class         | string | optional | [State class]           |
+
+[PromQL]: https://prometheus.io/docs/prometheus/latest/querying/basics/
+[Unique ID]: https://www.home-assistant.io/faq/unique_id/
+[Device class]: https://www.home-assistant.io/integrations/sensor/#device-class
+[State class]: https://developers.home-assistant.io/docs/core/entity/sensor/#available-state-classes
 
 ## Example usage
 
