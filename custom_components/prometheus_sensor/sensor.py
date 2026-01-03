@@ -1,12 +1,8 @@
 """Prometheus Sensor component."""
 
-from dataclasses import dataclass
 from datetime import timedelta
-import logging
-from typing import Final, Optional
-from urllib.parse import urljoin
+from typing import Final
 
-import aiohttp
 import voluptuous as vol
 
 from homeassistant.components.sensor import SensorEntity
@@ -17,8 +13,6 @@ from homeassistant.const import (
     CONF_UNIQUE_ID,
     CONF_UNIT_OF_MEASUREMENT,
     CONF_URL,
-    STATE_PROBLEM,
-    STATE_UNKNOWN,
 )
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
@@ -29,7 +23,7 @@ from homeassistant.helpers.config_validation import (
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType, DiscoveryInfoType
 
-_LOGGER: Final = logging.getLogger(__name__)
+from . import Prometheus, QueryResult
 
 # Match the default scrape_interval in Prometheus
 SCAN_INTERVAL: Final = timedelta(seconds=15)
@@ -86,51 +80,6 @@ async def async_setup_platform(
     )
 
 
-@dataclass(frozen=True)
-class QueryResult:
-    value: Optional[float] = None
-    error: Optional[str] = None
-
-
-class Prometheus:
-    """Wrapper for Prometheus API Requests."""
-
-    def __init__(self, url: str, session: aiohttp.ClientSession) -> None:
-        """Initialize the Prometheus API wrapper."""
-        self._session = session
-        self._url = urljoin(f"{url}/", "api/v1/query")
-
-    async def query(self, expr: str) -> QueryResult:
-        """Query expression response."""
-        response = await self._session.get(self._url, params={"query": expr})
-        if response.status != 200:
-            _LOGGER.error(
-                "Unexpected HTTP status code %s for expression '%s'",
-                response.status,
-                expr,
-            )
-            return QueryResult(error=STATE_UNKNOWN)
-
-        try:
-            result = (await response.json())["data"]["result"]
-        except (ValueError, KeyError) as error:
-            _LOGGER.error("Invalid query response: %s", error)
-            return QueryResult(error=STATE_UNKNOWN)
-
-        if not result:
-            _LOGGER.error("Expression '%s' yielded no result", expr)
-            return QueryResult(error=STATE_PROBLEM)
-        elif len(result) > 1:
-            _LOGGER.error("Expression '%s' yielded multiple metrics", expr)
-            return QueryResult(error=STATE_PROBLEM)
-
-        value = float(result[0]["value"][1])
-
-        _LOGGER.debug("Expression '%s' yields result %f", expr, value)
-
-        return QueryResult(value)
-
-
 class PrometheusSensor(SensorEntity):
     """Sensor entity representing the result of a PromQL expression."""
 
@@ -156,6 +105,6 @@ class PrometheusSensor(SensorEntity):
 
     async def async_update(self) -> None:
         """Update state by executing query."""
-        result = await self._prometheus.query(self._expression)
+        result: QueryResult = await self._prometheus.query(self._expression)
         self._attr_available = result.error is None
         self._attr_native_value = result.value
