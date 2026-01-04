@@ -1,12 +1,18 @@
 """Prometheus Sensor component."""
 
-from datetime import timedelta
-from typing import Final
+from __future__ import annotations
+
+from typing import TYPE_CHECKING, Final
 
 import voluptuous as vol
 
-from homeassistant.components.sensor import SensorEntity
-from homeassistant.components.sensor.const import SensorDeviceClass, SensorStateClass
+from homeassistant.components.sensor import (
+    CONF_STATE_CLASS,
+    PLATFORM_SCHEMA as SENSOR_PLATFORM_SCHEMA,
+    SensorDeviceClass,
+    SensorEntity,
+    SensorStateClass,
+)
 from homeassistant.const import (
     CONF_DEVICE_CLASS,
     CONF_NAME,
@@ -14,24 +20,19 @@ from homeassistant.const import (
     CONF_UNIT_OF_MEASUREMENT,
     CONF_URL,
 )
-from homeassistant.core import HomeAssistant
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 import homeassistant.helpers.config_validation as cv
-from homeassistant.helpers.config_validation import (
-    PLATFORM_SCHEMA as SENSOR_PLATFORM_SCHEMA,
-)
-from homeassistant.helpers.entity_platform import AddEntitiesCallback
-from homeassistant.helpers.typing import ConfigType, DiscoveryInfoType
 
-from . import Prometheus, QueryResult
+from . import Prometheus
 
-# Match the default scrape_interval in Prometheus
-SCAN_INTERVAL: Final = timedelta(seconds=15)
+if TYPE_CHECKING:
+    from homeassistant.core import HomeAssistant
+    from homeassistant.helpers.entity_platform import AddEntitiesCallback
+    from homeassistant.helpers.typing import ConfigType, DiscoveryInfoType
 
-DEFAULT_URL: Final = "http://localhost:9090"
-CONF_QUERIES: Final = "queries"
-CONF_EXPR: Final = "expr"
-CONF_STATE_CLASS: Final = "state_class"
+    from . import QueryResult
+
+from .const import CONF_EXPR, CONF_QUERIES, DEFAULT_URL, SCAN_INTERVAL as SCAN_INTERVAL
 
 _QUERY_SCHEMA: Final = vol.Schema(
     {
