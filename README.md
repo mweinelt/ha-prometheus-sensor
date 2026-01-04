@@ -10,23 +10,47 @@ Tested against Home Asisstant 2025.8.3.
 
 ## Options
 
+[Device class (binary sensor)]: https://www.home-assistant.io/integrations/binary_sensor/#device-class
+[Device class (sensor)]: https://www.home-assistant.io/integrations/sensor/#device-class
+[PromQL]: https://prometheus.io/docs/prometheus/latest/querying/basics/
+[State class]: https://developers.home-assistant.io/docs/core/entity/sensor/#available-state-classes
+[Template]: https://www.home-assistant.io/docs/configuration/templating/
+[Unique ID]: https://www.home-assistant.io/faq/unique_id/
+
+### Binary Sensor
+
+| Name                | Type   | Default  | Description                    |
+|---------------------|--------|----------|--------------------------------|
+| name                | string | required | Friendly name                  |
+| expr                | string | required | [PromQL] expression            |
+| value_template      | string | optional | [Template]                     |
+| unique_id           | string | optional | [Unique ID]                    |
+| device_class        | string | optional | [Device class (binary sensor)] |
+
+### Sensor
+
 | Name                | Type   | Default  | Description             |
 |---------------------|--------|----------|-------------------------|
 | name                | string | required | Friendly name           |
 | expr                | string | required | [PromQL] expression     |
 | unique_id           | string | optional | [Unique ID]             |
 | unit_of_measurement | string | optional | Unit of the measurement |
-| device_class        | string | optional | [Device class]          |
+| device_class        | string | optional | [Device class (sensor)] |
 | state_class         | string | optional | [State class]           |
-
-[PromQL]: https://prometheus.io/docs/prometheus/latest/querying/basics/
-[Unique ID]: https://www.home-assistant.io/faq/unique_id/
-[Device class]: https://www.home-assistant.io/integrations/sensor/#device-class
-[State class]: https://developers.home-assistant.io/docs/core/entity/sensor/#available-state-classes
 
 ## Example usage
 
 ```yaml
+binary_sensor:
+  - platform: prometheus_sensor
+    url: http://localhost:9090
+    queries:
+      - name: Front Door
+        unique_id: front_door_open
+        expr: front_door_open
+        value_template: "{{ value == 1 }}"
+        device_class: door
+
 sensor:
   - platform: prometheus_sensor
     url: http://localhost:9090
