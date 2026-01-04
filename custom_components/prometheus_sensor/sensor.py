@@ -67,13 +67,13 @@ async def async_setup_platform(
     async_add_entities(
         new_entities=[
             PrometheusSensor(
-                prometheus,
-                query[CONF_EXPR],
-                query.get(CONF_UNIQUE_ID),
-                query[CONF_NAME],
-                query.get(CONF_DEVICE_CLASS),
-                query.get(CONF_STATE_CLASS),
-                query.get(CONF_UNIT_OF_MEASUREMENT),
+                prometheus=prometheus,
+                expression=query[CONF_EXPR],
+                unique_id=query.get(CONF_UNIQUE_ID),
+                device_name=query[CONF_NAME],
+                device_class=query.get(CONF_DEVICE_CLASS),
+                state_class=query.get(CONF_STATE_CLASS),
+                unit_of_measurement=query.get(CONF_UNIT_OF_MEASUREMENT),
             )
             for query in config[CONF_QUERIES]
         ],
@@ -86,6 +86,7 @@ class PrometheusSensor(SensorEntity):
 
     def __init__(
         self,
+        *,
         prometheus: Prometheus,
         expression: str,
         unique_id: str | None,
@@ -93,7 +94,7 @@ class PrometheusSensor(SensorEntity):
         device_class: SensorDeviceClass | None,
         state_class: SensorStateClass | None,
         unit_of_measurement: str | None,
-    ):
+    ) -> None:
         """Initialize the sensor."""
         self._prometheus: Prometheus = prometheus
         self._expression = expression
