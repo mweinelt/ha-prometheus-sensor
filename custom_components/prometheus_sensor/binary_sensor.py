@@ -45,7 +45,7 @@ _QUERY_SCHEMA: Final = vol.Schema(
 
 PLATFORM_SCHEMA: Final = BINARY_SENSOR_PLATFORM_SCHEMA.extend(
     {
-        vol.Optional(CONF_URL, default=DEFAULT_URL): cv.string,  # type: ignore
+        vol.Optional(CONF_URL, default=DEFAULT_URL): cv.string,
         vol.Required(CONF_QUERIES): [_QUERY_SCHEMA],
     }
 )
