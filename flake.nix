@@ -51,9 +51,10 @@
                 };
                 ruff.enable = true;
                 ruff-format.enable = true;
-                pyright = {
+                ty = {
                   enable = true;
-                  entry = "${lib.getExe pkgs.pyright} --pythonpath ${pythonEnv.interpreter}";
+                  entry = "${lib.getExe pkgs.ty} check --python ${pythonEnv.interpreter}";
+                  package = pkgs.ty;
                 };
               };
             };
