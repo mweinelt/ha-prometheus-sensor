@@ -40,6 +40,7 @@
         {
           checks = {
             pre-commit = git-hooks.lib.${system}.run {
+              package = pkgs.prek;
               src = ./.;
               hooks = {
                 markdownlint = {
