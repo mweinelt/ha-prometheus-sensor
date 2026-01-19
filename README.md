@@ -6,7 +6,7 @@ Contributions welcome!
 
 ## Compatibility
 
-Tested against Home Asisstant 2025.8.3.
+Tested against Home Assistant 2026.1.1.
 
 ## Options
 
