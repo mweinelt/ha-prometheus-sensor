@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.2.0
+
+- Add binary sensor support
+- Created option documentation
+
+Tested compatibility with 2026.1.1
+
 ## 1.1.3
 
 - Migrate from Throttle decorator to SCAN_INTERVAL
