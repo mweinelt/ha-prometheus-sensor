@@ -29,7 +29,7 @@ class Prometheus:
         try:
             response = await self._session.get(self._url, params={"query": expr})
         except aiohttp.ClientError as error:
-            _LOGGER.error( "HTTP request failed: %s", error)
+            _LOGGER.error("HTTP request failed: %s", error)
             return QueryResult(error=STATE_PROBLEM)
 
         if response.status != 200:
