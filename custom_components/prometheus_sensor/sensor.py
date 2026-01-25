@@ -77,9 +77,7 @@ async def async_setup_platform(
             )
             for query in config[CONF_QUERIES]
         ],
-        # ensure the entities are added first so if the first poll fails unexpectedly
-        # the entity will still be created and polling will retry
-        update_before_add=False,
+        update_before_add=True,
     )
 
 
