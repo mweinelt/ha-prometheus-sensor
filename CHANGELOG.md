@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.2.1
+
+- Fixes entity creation when Prometheus is unreachable at startup
+
 ## 1.2.0
 
 - Add binary sensor support
