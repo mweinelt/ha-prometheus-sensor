@@ -26,7 +26,12 @@ class Prometheus:
 
     async def query(self, expr: str) -> QueryResult:
         """Query expression response."""
-        response = await self._session.get(self._url, params={"query": expr})
+        try:
+            response = await self._session.get(self._url, params={"query": expr})
+        except aiohttp.ClientError as error:
+            _LOGGER.error("Error querying %s: %s", self._url, error)
+            return QueryResult(error=STATE_PROBLEM)
+
         if response.status != 200:
             _LOGGER.error(
                 "Unexpected HTTP status code %s for expression '%s'",
