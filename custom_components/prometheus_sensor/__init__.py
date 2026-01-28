@@ -1,13 +1,28 @@
+from __future__ import annotations
+
 from dataclasses import dataclass
 import logging
-from typing import Final, Optional
+from typing import TYPE_CHECKING, Final, Optional
 from urllib.parse import urljoin
 
 import aiohttp
 
 from homeassistant.const import STATE_PROBLEM, STATE_UNKNOWN
+from homeassistant.helpers.reload import async_setup_reload_service
+
+if TYPE_CHECKING:
+    from homeassistant.core import HomeAssistant
+    from homeassistant.helpers.typing import ConfigType
+
+from .const import DOMAIN, PLATFORMS
 
 _LOGGER: Final = logging.getLogger(__name__)
+
+
+async def async_setup(hass: HomeAssistant, config: ConfigType):
+    """Set up the prometheus-sensor integration."""
+    await async_setup_reload_service(hass, DOMAIN, PLATFORMS)
+    return True
 
 
 @dataclass(frozen=True)
