@@ -1,6 +1,9 @@
 from datetime import timedelta
 from typing import Final
 
+DOMAIN = "prometheus_sensor"
+PLATFORMS = ["binary_sensor", "sensor"]
+
 # Match the default scrape_interval in Prometheus
 SCAN_INTERVAL: Final = timedelta(seconds=15)
 
