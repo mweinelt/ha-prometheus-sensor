@@ -15,6 +15,6 @@ jobs:
         persist-credentials: false
     - uses: DeterminateSystems/nix-installer-action@490cfee336d5220c80b0c5cab117b4a26fb3898a # main
     - uses: DeterminateSystems/magic-nix-cache-action@1828eb4e5414b8dfe36daae53ea3e4b8c3fdec7a # main
-    - uses: DeterminateSystems/flake-checker-action@2e32b6dce651e6992cc110d569e0b60746e31b48 # main
+    - uses: DeterminateSystems/flake-checker-action@fd11c504211041399e78bd1027d885160c8ae4c2 # main
     - run: nix flake check -L
 
