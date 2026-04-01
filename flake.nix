@@ -70,7 +70,7 @@
               buildInputs = [ pythonEnv ] ++ self.checks.${system}.pre-commit.enabledPackages;
             };
 
-          formatter = pkgs.nixfmt-rfc-style;
+          formatter = pkgs.nixfmt-tree;
         }
       );
 }
