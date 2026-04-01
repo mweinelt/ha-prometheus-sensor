@@ -50,6 +50,7 @@
                     MD013 = false;
                   };
                 };
+                nixfmt.enable = true;
                 ruff.enable = true;
                 ruff-format.enable = true;
                 ty = {
