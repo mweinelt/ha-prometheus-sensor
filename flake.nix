@@ -55,6 +55,7 @@
                 ty = {
                   enable = true;
                   entry = "${lib.getExe pkgs.ty} check --python ${pythonEnv.interpreter}";
+                  files = "\\.py$";
                   package = pkgs.ty;
                 };
               };
