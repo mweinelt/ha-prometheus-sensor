@@ -11,3 +11,4 @@ DEFAULT_URL: Final = "http://localhost:9090"
 
 CONF_QUERIES: Final = "queries"
 CONF_EXPR: Final = "expr"
+CONF_HEADERS: Final = "headers"
