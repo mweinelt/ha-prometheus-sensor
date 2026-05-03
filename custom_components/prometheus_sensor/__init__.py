@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from collections.abc import Mapping
 from dataclasses import dataclass
 import logging
 from typing import TYPE_CHECKING, Final, Optional
@@ -35,7 +36,10 @@ class Prometheus:
     """Wrapper for Prometheus API Requests."""
 
     def __init__(
-        self, url: str, session: aiohttp.ClientSession, headers: dict | None = None
+        self,
+        url: str,
+        session: aiohttp.ClientSession,
+        headers: Mapping[str, str] | None = None,
     ) -> None:
         """Initialize the Prometheus API wrapper."""
         self._session = session
