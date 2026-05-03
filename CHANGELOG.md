@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.3.0
+
+- Hot-Reloading of YAML configurations
+- Extra HTTP headers
+
 ## 1.2.1
 
 - Fixes entity creation when Prometheus is unreachable at startup

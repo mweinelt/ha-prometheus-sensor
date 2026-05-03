@@ -1,14 +1,62 @@
 # Prometheus sensor for Home Assistant
 
-Use [PromQL expressions](https://prometheus.io/docs/prometheus/latest/querying/basics/) to query [Prometheus](https://prometheus.io/)-compatible APIs and expose the results as sensor values in [Home Assistant](https://www.home-assistant.io/).
+Use [PromQL expressions] to query [Prometheus]-[compatible APIs] and expose the
+results as sensor values in [Home Assistant].
 
 Contributions welcome!
+
+[PromQL expressions]: https://prometheus.io/docs/prometheus/latest/querying/basics/
+[Prometheus]: https://prometheus.io
+[compatible APIs]: https://prometheus.io/docs/prometheus/latest/querying/api/#instant-queries
+[Home Assistant]: https://www.home-assistant.io
 
 ## Compatibility
 
 Tested against Home Assistant 2026.1.1.
 
-## Options
+## Basic setup
+
+This component hooks into Home Assistant via the [YAML configuration] as a
+platform integration. The platform can be defined multiple times with varying
+settings.
+
+[YAML configuration]: https://www.home-assistant.io/docs/configuration/yaml/
+
+### Settings
+
+| Name     | Type    | Required | Example                 | Description                |
+|----------|---------|----------|-------------------------|----------------------------|
+| platform | string  | true     | `prometheus_sensor`     | Platform name              |
+| url      | string  | true     | `http://localhost:9090` | Prometheus base URL        |
+| headers  | mapping | false    | [Extra HTTP headers]    | Extra HTTP headers         |
+| queries  | list    | true     | [Example]               | List of queries to execute |
+
+[Extra HTTP headers]: #extra-http-headers
+[Example]: #example-usage
+
+### Extra HTTP headers
+
+This is an optional mapping (`string -> string`) that will be sent with every
+request. It can be used to support authentication headers or [tenant selection]
+in Grafana Mimir.
+
+[tenant selection]: https://grafana.com/docs/mimir/latest/manage/secure/authentication-and-authorization/
+
+```yaml
+sensor:
+  - platform: prometheus_sensor
+    url: http://localhost:8080
+    headers:
+      # Grafana Mimir tenant selection
+      X-Scope-OrgID: my-tenant
+      # Avoid hardcoding secrets, use !secret in production
+      Authorization: Bearer <token>
+```
+
+## Entities
+
+This component currently supports `sensor` and `binary_sensor` entities. Each
+query is represented as one entity in Home Assistant.
 
 [Device class (binary sensor)]: https://www.home-assistant.io/integrations/binary_sensor/#device-class
 [Device class (sensor)]: https://www.home-assistant.io/integrations/sensor/#device-class

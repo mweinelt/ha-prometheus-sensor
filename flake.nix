@@ -43,13 +43,7 @@
               package = pkgs.prek;
               src = ./.;
               hooks = {
-                markdownlint = {
-                  enable = true;
-                  settings.configuration = {
-                    # Don't enforce a max line length
-                    MD013 = false;
-                  };
-                };
+                rumdl.enable = true;
                 nixfmt.enable = true;
                 ruff.enable = true;
                 ruff-format.enable = true;
