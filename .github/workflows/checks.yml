@@ -18,6 +18,6 @@ jobs:
       with:
         extra_nix_config: |
           extra-experimental-features = nix-command flakes
-    - uses: DeterminateSystems/magic-nix-cache-action@908b263ff629f4cc17666315b7fd3ec127c6244d # main
+    - uses: DeterminateSystems/magic-nix-cache-action@14645543c3b214bedad3b9b49775cb042f4c1fc7 # main
     - run: nix flake check -L
 
