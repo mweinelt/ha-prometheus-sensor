@@ -29,7 +29,7 @@
           pkgs = nixpkgs.legacyPackages.${system};
           lib = pkgs.lib;
 
-          pythonEnv = pkgs.home-assistant.python.withPackages (
+          pythonEnv = pkgs.home-assistant.python3Packages.python.withPackages (
             ps: with ps; [
               aiohttp
               (toPythonModule pkgs.home-assistant)
