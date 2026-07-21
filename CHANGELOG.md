@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.3.1
+
+- Expose reload service action in {file}`services.yaml`
+
 ## 1.3.0
 
 - Hot-Reloading of YAML configurations
