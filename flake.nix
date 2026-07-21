@@ -43,6 +43,7 @@
               package = pkgs.prek;
               src = ./.;
               hooks = {
+                taplo.enable = true;
                 rumdl.enable = true;
                 nixfmt.enable = true;
                 ruff.enable = true;
