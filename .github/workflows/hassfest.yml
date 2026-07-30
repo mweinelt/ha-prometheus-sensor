@@ -16,5 +16,5 @@ jobs:
       - uses: "actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1" # v7
         with:
           persist-credentials: false
-      - uses: "home-assistant/actions/hassfest@e3fb68ebda13d88a0d695082f471ba2c83d025fb" # master
+      - uses: "home-assistant/actions/hassfest@ab22029681aa532bfe7de5774a9972d67bfbd2c0" # master
 
