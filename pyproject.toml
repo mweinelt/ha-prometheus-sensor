@@ -4,6 +4,7 @@ target-version = "py314"
 [tool.ruff.lint]
 select = ["ALL"]
 ignore = [
+  "CPY",     # copyright notices
   "D",       # docstrings
   "COM812",  # missing-trailing-comma
   "PLR0913", # too-many-arguments
