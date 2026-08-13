@@ -18,6 +18,6 @@ jobs:
       with:
         extra_nix_config: |
           extra-experimental-features = nix-command flakes
-    - uses: Mic92/hestia@b21a1aaf8c3d5c2e430c9ba278c0f78abd46a320 # v3
+    - uses: Mic92/hestia@f1f4df2801140a36398ed423533c8460618539df # v3
     - run: nix flake check -L
 
