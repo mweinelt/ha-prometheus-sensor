@@ -24,12 +24,13 @@ settings.
 
 ### Settings
 
-| Name     | Type    | Required | Example                 | Description                |
-|----------|---------|----------|-------------------------|----------------------------|
-| platform | string  | true     | `prometheus_sensor`     | Platform name              |
-| url      | string  | true     | `http://localhost:9090` | Prometheus base URL        |
-| headers  | mapping | false    | [Extra HTTP headers]    | Extra HTTP headers         |
-| queries  | list    | true     | [Example]               | List of queries to execute |
+| Name          | Type    | Required | Example                 | Description                |
+|---------------|---------|----------|-------------------------|----------------------------|
+| platform      | string  | true     | `prometheus_sensor`     | Platform name              |
+| url           | string  | true     | `http://localhost:9090` | Prometheus base URL        |
+| headers       | mapping | false    | [Extra HTTP headers]    | Extra HTTP headers         |
+| queries       | list    | true     | [Example]               | List of queries to execute |
+| scan_interval | float   | false    | `15`                    | Update interval in seconds |
 
 [Extra HTTP headers]: #extra-http-headers
 [Example]: #example-usage
@@ -106,6 +107,7 @@ binary_sensor:
 sensor:
   - platform: prometheus_sensor
     url: http://localhost:9090
+    scan_interval: 5
     queries:
       - name: Energy usage
         expr: energy_usage_wh / 1000
