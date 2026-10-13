@@ -33,7 +33,7 @@
             ps: with ps; [
               aiohttp
               (toPythonModule pkgs.home-assistant)
-              voluptuous
+              probatio
             ]
           );
         in
