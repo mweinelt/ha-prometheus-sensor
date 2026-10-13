@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING, Final
 
-import voluptuous as vol
+import probatio
 
 from homeassistant.components.binary_sensor import (
     PLATFORM_SCHEMA as BINARY_SENSOR_PLATFORM_SCHEMA,
@@ -35,21 +35,21 @@ from .const import CONF_EXPR, CONF_HEADERS, CONF_QUERIES, DEFAULT_URL
 
 SCAN_INTERVAL = const.SCAN_INTERVAL
 
-_QUERY_SCHEMA: Final = vol.Schema(
+_QUERY_SCHEMA: Final = probatio.Schema(
     {
-        vol.Required(CONF_NAME): cv.string,
-        vol.Optional(CONF_UNIQUE_ID): cv.string,
-        vol.Required(CONF_EXPR): cv.string,
-        vol.Optional(CONF_VALUE_TEMPLATE): cv.template,
-        vol.Optional(CONF_DEVICE_CLASS): vol.Coerce(BinarySensorDeviceClass),
+        probatio.Required(CONF_NAME): cv.string,
+        probatio.Optional(CONF_UNIQUE_ID): cv.string,
+        probatio.Required(CONF_EXPR): cv.string,
+        probatio.Optional(CONF_VALUE_TEMPLATE): cv.template,
+        probatio.Optional(CONF_DEVICE_CLASS): probatio.Coerce(BinarySensorDeviceClass),
     },
 )
 
 PLATFORM_SCHEMA: Final = BINARY_SENSOR_PLATFORM_SCHEMA.extend(
     {
-        vol.Optional(CONF_URL, default=DEFAULT_URL): cv.string,
-        vol.Optional(CONF_HEADERS): vol.Schema({cv.string: cv.string}),
-        vol.Required(CONF_QUERIES): [_QUERY_SCHEMA],
+        probatio.Optional(CONF_URL, default=DEFAULT_URL): cv.string,
+        probatio.Optional(CONF_HEADERS): probatio.Schema({cv.string: cv.string}),
+        probatio.Required(CONF_QUERIES): [_QUERY_SCHEMA],
     },
 )
 
