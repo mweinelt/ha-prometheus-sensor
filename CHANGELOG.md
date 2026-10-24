@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.3.2
+
+- Document `scan_interval` as a per platform option
+- Follow home-assistant from voluptuous to probatio
+
 ## 1.3.1
 
 - Expose reload service action in {file}`services.yaml`
